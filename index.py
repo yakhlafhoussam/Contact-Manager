@@ -3,10 +3,12 @@ import os
 options = ["Add new contact", "Show all contact", "Delete a contact", "Exit"]
 
 def main():
+    clear()
     if os.path.exists("contact.txt"):
         menu()
     else:
         creatContact()
+        successMsg("New contact file was created !")
         menu()
 
 def menu():
@@ -57,6 +59,10 @@ def askMsg(msg):
     clear()
     print(f"\033[33m{msg}\033[0m")
 
+def successMsg(msg):
+    clear()
+    print(f"\033[32m{msg}\033[0m")
+
 def clear():
     os.system("clear")
 
@@ -75,7 +81,7 @@ def readContact():
     return contact
 
 def addNewContact(name, phone, email):
-    contact = name + " " + phone + " " + email
+    contact = f"{name} {phone} {email}"
     file = open("contact.txt", "a")
     file.write(contact)
 
