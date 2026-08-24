@@ -4,6 +4,9 @@ print("Hello Houssam !")
 
 if os.path.exists("contact.txt"):
     print("The contact file is exist !")
+    file = open("contact.txt", "r")
+    contact = file.read()
+    print(contact)
 else:
     print("The contact file not exist !")
     file = open("contact.txt", "w")
