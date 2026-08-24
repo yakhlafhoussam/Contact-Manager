@@ -1,5 +1,12 @@
 import os
 
+def main():
+    print("------------------------------------------")
+    print("       Welcome in contact manager !       ")
+    print("------------------------------------------")
+    print("1. Add new contact\n2. Show all contact\n3. Delete a contact")
+    print("------------------------------------------\n")
+
 def creatContact():
     file = open("contact.txt", "w")
     file.close
@@ -14,15 +21,7 @@ def addNewContact(name, phone, email):
     file = open("contact.txt", "a")
     file.write(contact)
 
-print("Hello Houssam !")
-
-if os.path.exists("contact.txt"):
-    print("The contact file is exist !")
-    contact = readContact()
-    print(contact)
-else:
-    print("The contact file not exist !")
-    creatContact()
-    print("The conatct file was created !")
-    addNewContact("Houssam", "0615940605", "yakhlafhoussam@gmail.com")
-    print("The New contact was created !")
+print("Hello Houssam !\n")
+main()
+select = input("Enter your chose : ")
+print(select)
