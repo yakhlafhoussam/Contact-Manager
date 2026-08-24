@@ -3,6 +3,13 @@ import os
 options = ["Add new contact", "Show all contact", "Delete a contact", "Exit"]
 
 def main():
+    if os.path.exists("contact.txt"):
+        menu()
+    else:
+        creatContact()
+        menu()
+
+def menu():
     print("------------------------------------------")
     print("     Welcome to HYK contact manager !     ")
     print("------------------------------------------")
@@ -24,14 +31,14 @@ def selectPost(select):
         case 1:
             clear()
             print("Add new comming soon !")
-            main()
+            menu()
         case 2:
             clear()
             showAllContact()
         case 3:
             clear()
             print("Add new comming soon !")
-            main()
+            menu()
         case 4:
             clear()
             print("Good bey !")
@@ -39,12 +46,16 @@ def selectPost(select):
         case _:
             clear()
             errorMsg("Please select a suitable option from the list.")
-            main()
+            menu()
 
 def errorMsg(msg):
     clear()
     print(f"\033[31m{msg}\033[0m")
-    main()
+    menu()
+
+def askMsg(msg):
+    clear()
+    print(f"\033[33m{msg}\033[0m")
 
 def clear():
     os.system("clear")
@@ -52,7 +63,7 @@ def clear():
 def showAllContact():
     contact = readContact()
     print(contact)
-    main()
+    menu()
 
 def creatContact():
     file = open("contact.txt", "w")
