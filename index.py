@@ -6,8 +6,13 @@ def main():
     print("------------------------------------------")
     print("1. Add new contact\n2. Show all contact\n3. Delete a contact\n4. Exit")
     print("------------------------------------------\n")
+    selectGet()
 
-def selectAction(select):
+def selectGet():
+    select = int(input("Enter your chose : "))
+    selectPost(select)
+
+def selectPost(select):
     match select:
         case 1:
             print("Add new comming soon !")
@@ -42,5 +47,3 @@ def addNewContact(name, phone, email):
 
 print("Hello Houssam !\n")
 main()
-select = input("Enter your chose : ")
-selectAction(select)
