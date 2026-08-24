@@ -4,8 +4,27 @@ def main():
     print("------------------------------------------")
     print("       Welcome in contact manager !       ")
     print("------------------------------------------")
-    print("1. Add new contact\n2. Show all contact\n3. Delete a contact")
+    print("1. Add new contact\n2. Show all contact\n3. Delete a contact\n4. Exit")
     print("------------------------------------------\n")
+
+def selectAction(select):
+    match select:
+        case 1:
+            print("Add new comming soon !")
+        case 2:
+            showAllContact()
+        case 3:
+            print("Add new comming soon !")
+        case 4:
+            print("Good bey !")
+            quit()
+        case _:
+            print("Please select a suitable option from the list.")
+            main()
+
+def showAllContact():
+    contact = readContact()
+    print(contact)
 
 def creatContact():
     file = open("contact.txt", "w")
@@ -24,4 +43,4 @@ def addNewContact(name, phone, email):
 print("Hello Houssam !\n")
 main()
 select = input("Enter your chose : ")
-print(select)
+selectAction(select)
