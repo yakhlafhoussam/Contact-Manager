@@ -81,7 +81,6 @@ def getAllContact():
     array = contact.split("\n")
     return array
     
-
 def creatContact():
     file = open("contact.txt", "w")
     file.close
