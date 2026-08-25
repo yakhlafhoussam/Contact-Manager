@@ -43,8 +43,14 @@ def selectPost(select):
             menu()
         case 4:
             clear()
-            print("Good bey !")
-            quit()
+            quit("""\033[35m
+  ██████╗  ██████╗  ██████╗ ██████╗     ██████╗ ██╗   ██╗███████╗    ██╗
+ ██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗    ██╔══██╗╚██╗ ██╔╝██╔════╝    ██║
+ ██║  ███╗██║   ██║██║   ██║██║  ██║    ██████╔╝ ╚████╔╝ █████╗      ██║
+ ██║   ██║██║   ██║██║   ██║██║  ██║    ██╔══██╗  ╚██╔╝  ██╔══╝      ╚═╝
+ ╚██████╔╝╚██████╔╝╚██████╔╝██████╔╝    ██████╔╝   ██║   ███████╗    ██╗
+  ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝     ╚═════╝    ╚═╝   ╚══════╝    ╚═╝
+            \033[0m""")
         case _:
             clear()
             errorMsg("Please select a suitable option from the list.")
@@ -67,9 +73,14 @@ def clear():
     os.system("clear")
 
 def showAllContact():
+    array = getAllContact()
+    print(array)
+
+def getAllContact():
     contact = readContact()
-    print(contact)
-    menu()
+    array = contact.split("\n")
+    return array
+    
 
 def creatContact():
     file = open("contact.txt", "w")
