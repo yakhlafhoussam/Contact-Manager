@@ -1,4 +1,6 @@
 import os
+import platform
+
 
 options = ["Add new contact", "Show all contact", "Delete a contact", "Exit"]
 
@@ -73,12 +75,13 @@ def exitApp():
     \033[0m""")
 
 def clear():
-    os.system("clear")
+    os_name = platform.system()
+    os.system("clear" if os_name == "Linux" else "cls")
 
 def showAllContact():
     array = getAllContact()
     array = prepareContact(array)
-    print(array)
+    printContact(array)
 
 def getAllContact():
     contact = readContact()
@@ -90,6 +93,16 @@ def prepareContact(array):
     for contact in array:
         finish.append(contact.split("|"))
     return finish
+
+def printContact(contacts):
+    print("------------------------------------------")
+    print("               All contacts               ")
+    print("------------------------------------------")
+    for index, contact in enumerate(contacts):
+        num = index + 1
+        print(num)
+    print("------------------------------------------\n")
+    selectGet()
     
 def creatContact():
     file = open("contact.txt", "w")
