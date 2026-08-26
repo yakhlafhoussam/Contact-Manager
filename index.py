@@ -1,7 +1,6 @@
 import os
 import platform
 
-
 options = ["Add new contact", "Show all contact", "Delete a contact", "Exit"]
 
 def main():
@@ -95,14 +94,14 @@ def prepareContact(array):
     return finish
 
 def printContact(contacts):
-    print("------------------------------------------")
-    print("               All contacts               ")
-    print("------------------------------------------")
+    print("---------------------------------------------------")
+    print("                   All  Contacts                   ")
+    print("---------------------------------------------------")
     for index, contact in enumerate(contacts):
         num = index + 1
-        print(num)
-    print("------------------------------------------\n")
-    selectGet()
+        print(f"--------------------Contact N°{num}--------------------\n")
+        print(f"Name  : {contact[0]}\nPhone : {contact[1]}\nEmail : {contact[2]}\n")
+    print("---------------------------------------------------\n")
     
 def creatContact():
     file = open("contact.txt", "w")
