@@ -3,6 +3,7 @@ import platform
 
 options = ["Add new contact", "Show all contact", "Delete a contact", "Exit"]
 
+# Check file exist
 def main():
     clear()
     if os.path.exists("contact.txt"):
@@ -12,6 +13,7 @@ def main():
         successMsg("New contact file was created !")
         menu()
 
+# Main Menu
 def menu():
     print("------------------------------------------")
     print("     Welcome to HYK contact manager !     ")
@@ -50,6 +52,7 @@ def selectPost(select):
             errorMsg("Please select a suitable option from the list.")
             menu()
 
+# Messages
 def errorMsg(msg):
     clear()
     print(f"\033[31m{msg}\033[0m")
@@ -63,20 +66,16 @@ def successMsg(msg):
     clear()
     print(f"\033[32m{msg}\033[0m")
 
+# Exit
 def exitApp():
-    quit("""\033[35m
-      ██████╗  ██████╗  ██████╗ ██████╗     ██████╗ ██╗   ██╗███████╗    ██╗
-     ██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗    ██╔══██╗╚██╗ ██╔╝██╔════╝    ██║
-     ██║  ███╗██║   ██║██║   ██║██║  ██║    ██████╔╝ ╚████╔╝ █████╗      ██║
-     ██║   ██║██║   ██║██║   ██║██║  ██║    ██╔══██╗  ╚██╔╝  ██╔══╝      ╚═╝
-     ╚██████╔╝╚██████╔╝╚██████╔╝██████╔╝    ██████╔╝   ██║   ███████╗    ██╗
-      ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝     ╚═════╝    ╚═╝   ╚══════╝    ╚═╝
-    \033[0m""")
+    quit("\033[34mGood Bye !\033[0m")
 
+# Clear Terminal
 def clear():
     os_name = platform.system()
     os.system("clear" if os_name == "Linux" else "cls")
 
+# Show All Contacts
 def showAllContact():
     array = getAllContact()
     array = prepareContact(array)
@@ -102,19 +101,23 @@ def printContact(contacts):
         print(f"--------------------Contact N°{num}--------------------\n")
         print(f"Name  : {contact[0]}\nPhone : {contact[1]}\nEmail : {contact[2]}\n")
     print("---------------------------------------------------\n")
-    
+
+# Create Contact File
 def creatContact():
     file = open("contact.txt", "w")
     file.close
-    
+
+# Read Contact File
 def readContact():
     file = open("contact.txt", "r")
     contact = file.read()
     return contact
 
+# Add New Contact
 def addNewContact(name, phone, email):
-    contact = f"{name} {phone} {email}"
+    contact = f"\n{name}|{phone}|{email}"
     file = open("contact.txt", "a")
     file.write(contact)
+    file.close
 
 main()
