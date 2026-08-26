@@ -30,6 +30,7 @@ def selectGet():
         selectPost(select)
     except ValueError:
         errorMsg("Please enter a number.")
+        menu()
 
 def selectPost(select):
     match select:
@@ -45,7 +46,6 @@ def selectPost(select):
             print("Add new comming soon !")
             menu()
         case 4:
-            clear()
             exitApp()
         case _:
             clear()
@@ -56,7 +56,6 @@ def selectPost(select):
 def errorMsg(msg):
     clear()
     print(f"\033[31m{msg}\033[0m")
-    menu()
 
 def askMsg(msg):
     clear()
@@ -68,6 +67,7 @@ def successMsg(msg):
 
 # Exit
 def exitApp():
+    clear()
     quit("\033[34mGood Bye !\033[0m")
 
 # Clear Terminal
@@ -80,6 +80,7 @@ def showAllContact():
     array = getAllContact()
     array = prepareContact(array)
     printContact(array)
+    miniSelect()
 
 def getAllContact():
     contact = readContact()
@@ -101,6 +102,30 @@ def printContact(contacts):
         print(f"--------------------Contact N°{num}--------------------\n")
         print(f"Name  : {contact[0]}\nPhone : {contact[1]}\nEmail : {contact[2]}\n")
     print("---------------------------------------------------\n")
+
+def miniSelect():
+    print("\n1. Back to Menu\n2. Exit\n")
+    getMiniSelect()
+
+def getMiniSelect():
+    try:
+        select = int(input("Your choice : "))
+        postMiniSelect(select)
+    except ValueError:
+        clear()
+        errorMsg("Please enter a valide choices")
+        miniSelect()
+
+def postMiniSelect(select):
+    match select:
+        case 1:
+            main()
+        case 2:
+            exitApp()
+        case _:
+            clear()
+            errorMsg("Please chose from the choices")
+            miniSelect()
 
 # Create Contact File
 def creatContact():
