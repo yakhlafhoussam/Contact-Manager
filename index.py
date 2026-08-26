@@ -77,12 +77,19 @@ def clear():
 
 def showAllContact():
     array = getAllContact()
+    array = prepareContact(array)
     print(array)
 
 def getAllContact():
     contact = readContact()
     array = contact.split("\n")
     return array
+
+def prepareContact(array):
+    finish = []
+    for contact in array:
+        finish.append(contact.split("|"))
+    return finish
     
 def creatContact():
     file = open("contact.txt", "w")
