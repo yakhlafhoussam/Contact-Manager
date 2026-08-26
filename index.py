@@ -36,14 +36,13 @@ def selectPost(select):
     match select:
         case 1:
             clear()
-            print("Add new comming soon !")
-            menu()
+            addNewContact()
         case 2:
             clear()
             showAllContact()
         case 3:
             clear()
-            print("Add new comming soon !")
+            print("Comming soon !")
             menu()
         case 4:
             exitApp()
@@ -139,7 +138,46 @@ def readContact():
     return contact
 
 # Add New Contact
-def addNewContact(name, phone, email):
+def addNewContact():
+    new = getNewContactInfo()
+    createNewContact(new[0], new[1], new[2])
+    clear()
+    successMsg("The new contact was created")
+    menu()
+
+def getNewContactInfo():
+    name = getName()
+    while not name:
+        clear()
+        errorMsg("The name is required")
+        name = getName()
+    phone = getPhone()
+    while not phone:
+            clear()
+            errorMsg("The phone is required")
+            print(f"Name : {name}")
+            phone = getPhone()
+    email = getEmail()
+    while not email:
+            clear()
+            errorMsg("The email is required")
+            print(f"Name : {name}\nPhone : {phone}")
+            email = getEmail()
+    return (name, phone, email)
+
+def getName():
+    name = input("Name : ")
+    return name
+
+def getPhone():
+    phone = input("Phone : ")
+    return phone
+
+def getEmail():
+    email = input("Email : ")
+    return email
+
+def createNewContact(name, phone, email):
     contact = f"\n{name}|{phone}|{email}"
     file = open("contact.txt", "a")
     file.write(contact)
