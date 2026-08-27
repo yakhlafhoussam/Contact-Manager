@@ -186,6 +186,11 @@ def createNewContact(name, phone, email):
 def deleteContact():
     showAllContact()
     delete = getContactN()
+    check = checkContact(delete)
+    if not check:
+        clear()
+        errorMsg("This contact does't exist")
+        menu()
     clear()
     printOneContact(delete)
     check = ValidateDelete()
@@ -212,6 +217,12 @@ def printOneContact(delete):
     print(f"--------------------Contact N°{delete}--------------------\n")
     print(f"Name  : {target[0]}\nPhone : {target[1]}\nEmail : {target[2]}\n")
     print("---------------------------------------------------\n")
+
+def checkContact(index):
+    if index > len(getAllContact()) or index <= 0:
+        return False
+    else:
+        return True
 
 def ValidateDelete():
     askMsg("Are you sure ?")
