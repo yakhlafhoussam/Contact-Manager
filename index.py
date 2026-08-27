@@ -16,6 +16,8 @@ def main():
 
 # Main Menu
 def menu():
+    contacts = getAllContact()
+    rewriteContact(contacts)
     print("------------------------------------------")
     print("     Welcome to HYK contact manager !     ")
     print("------------------------------------------")
