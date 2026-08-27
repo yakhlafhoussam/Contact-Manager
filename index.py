@@ -68,7 +68,9 @@ def successMsg(msg):
 # Exit
 def exitApp():
     clear()
-    quit("\033[34mGood Bye !\033[0m")
+    print("From \033[34mHYK\033[0m to :")
+    os.system("whoami")
+    quit("Good Bye !")
 
 # Clear Terminal
 def clear():
