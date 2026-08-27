@@ -97,6 +97,8 @@ def printContact(contacts):
     print("---------------------------------------------------")
     print("                   All  Contacts                   ")
     print("---------------------------------------------------")
+    if len(contacts) <= 0:
+        askMsg(f"\n-------------The contact file is empty-------------\n")
     for index, contact in enumerate(contacts):
         num = index + 1
         print(f"--------------------Contact N°{num}--------------------\n")
