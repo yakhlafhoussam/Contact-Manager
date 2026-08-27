@@ -219,7 +219,8 @@ def printOneContact(delete):
     print("---------------------------------------------------\n")
 
 def checkContact(index):
-    if index > len(getAllContact()) or index <= 0:
+    contacts = getAllContact()
+    if index > len(contacts) or index <= 0 or not contacts[index -1]:
         return False
     else:
         return True
