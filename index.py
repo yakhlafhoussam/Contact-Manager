@@ -187,8 +187,13 @@ def deleteContact():
     delete = getContactN()
     clear()
     printOneContact(delete)
-    
-    print("Are you sure ? n/y :")
+    check = ValidateDelete()
+    if check == "y":
+        deleteContactN(delete - 1)
+    else:
+        clear()
+        askMsg("The delete was cancled !")
+        menu()
 
 def getContactN():
     askMsg("Each contact you want to delete ?\n")
@@ -206,5 +211,26 @@ def printOneContact(delete):
     print(f"--------------------Contact N°{delete}--------------------\n")
     print(f"Name  : {target[0]}\nPhone : {target[1]}\nEmail : {target[2]}\n")
     print("---------------------------------------------------\n")
+
+def ValidateDelete():
+    askMsg("Are you sure ?")
+    while True:
+        try:
+            delete = input("n/y : ")
+            return delete
+        except ValueError:
+            errorMsg("Please enter a valide choice")
+
+def deleteContactN(delete):
+    contacts = getAllContact()
+    del contacts[delete]
+    creatContact()
+    for contact in contacts:
+        file = open("contact.txt", "a")
+        file.write(f"{contact}\n")
+        file.close
+    clear()
+    successMsg("The contact was deleted !")
+    menu()
 
 main()
