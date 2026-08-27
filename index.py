@@ -10,6 +10,7 @@ def main():
         menu()
     else:
         creatContact()
+        clear()
         successMsg("New contact file was created !")
         menu()
 
@@ -29,6 +30,7 @@ def selectGet():
         select = int(input("Enter your chose : "))
         selectPost(select)
     except ValueError:
+        clear()
         errorMsg("Please enter a number.")
         menu()
 
@@ -40,10 +42,10 @@ def selectPost(select):
         case 2:
             clear()
             showAllContact()
+            miniSelect()
         case 3:
             clear()
-            print("Comming soon !")
-            menu()
+            deleteContact()
         case 4:
             exitApp()
         case _:
@@ -53,15 +55,12 @@ def selectPost(select):
 
 # Messages
 def errorMsg(msg):
-    clear()
     print(f"\033[31m{msg}\033[0m")
 
 def askMsg(msg):
-    clear()
     print(f"\033[33m{msg}\033[0m")
 
 def successMsg(msg):
-    clear()
     print(f"\033[32m{msg}\033[0m")
 
 # Exit
@@ -79,7 +78,6 @@ def showAllContact():
     array = getAllContact()
     array = prepareContact(array)
     printContact(array)
-    miniSelect()
 
 def getAllContact():
     contact = readContact()
@@ -126,7 +124,7 @@ def postMiniSelect(select):
             errorMsg("Please chose from the choices")
             miniSelect()
 
-# Create Contact File
+# Build Contact File
 def creatContact():
     file = open("contact.txt", "w")
     file.close
@@ -182,5 +180,31 @@ def createNewContact(name, phone, email):
     file = open("contact.txt", "a")
     file.write(contact)
     file.close
+
+# Delete a contact
+def deleteContact():
+    showAllContact()
+    delete = getContactN()
+    clear()
+    printOneContact(delete)
+    
+    print("Are you sure ? n/y :")
+
+def getContactN():
+    askMsg("Each contact you want to delete ?\n")
+    while True:
+        try:
+            delete = int(input("Contact N° :"))
+            return delete
+        except ValueError:
+            errorMsg("Please enter a valide choice")
+
+def printOneContact(delete):
+    contact = getAllContact()
+    target = contact[delete -1]
+    target = target.split("|")
+    print(f"--------------------Contact N°{delete}--------------------\n")
+    print(f"Name  : {target[0]}\nPhone : {target[1]}\nEmail : {target[2]}\n")
+    print("---------------------------------------------------\n")
 
 main()
