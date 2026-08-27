@@ -237,13 +237,17 @@ def ValidateDelete():
 def deleteContactN(delete):
     contacts = getAllContact()
     del contacts[delete]
-    creatContact()
-    for contact in contacts:
-        file = open("contact.txt", "a")
-        file.write(f"{contact}\n")
-        file.close
+    rewriteContact(contacts)
     clear()
     successMsg("The contact was deleted !")
     menu()
+
+def rewriteContact(contacts):
+    creatContact()
+    for contact in contacts:
+        if contact:
+            file = open("contact.txt", "a")
+            file.write(f"{contact}\n")
+            file.close
 
 main()
