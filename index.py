@@ -87,7 +87,8 @@ def getAllContact():
 def prepareContact(array):
     finish = []
     for contact in array:
-        finish.append(contact.split("|"))
+        if contact:
+            finish.append(contact.split("|"))
     return finish
 
 def printContact(contacts):
@@ -176,7 +177,7 @@ def getEmail():
     return email
 
 def createNewContact(name, phone, email):
-    contact = f"\n{name}|{phone}|{email}"
+    contact = f"{name}|{phone}|{email}\n"
     file = open("contact.txt", "a")
     file.write(contact)
     file.close
